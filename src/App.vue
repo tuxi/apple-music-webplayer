@@ -46,16 +46,16 @@
       <b-container tag="footer" class="text-small footer">
         <b-row>
           <b-col class="text-muted text-center mb-4 mt-2" lg="5">
-            <p class="mb-3 pb-0"><a href="https://zacharyseguin.ca" target="_blank"><img src="./assets/logo.svg" alt="Zachary Seguin" class="logo" /></a></p>
+            <p class="mb-3 pb-0"><a href="https://enba.com" target="_blank"><img src="./assets/logo.svg" alt="googlemusic" class="logo" /></a></p>
           </b-col>
           <b-col class="text-muted text-center mb-4 mt-2" lg="7">
-            <p>Copyright &copy; 2019 &mdash; <a href="https://zacharyseguin.ca" target="_blank">Zachary Seguin</a></p>
+            <p>Copyright &copy; 2019 &mdash; <a href="https://enba.com" target="_blank">googlemusic.net</a></p>
             <p class="p-0 m-1 trademark">Apple and Apple Music are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
-            <p>
-              If you encounter any issues, have any feedback or feature requests,
-              please <a href="https://github.com/zachomedia/apple-music-webplayer/issues" target="_blank">submit an issue on GitHub</a>
-              or send an email to <a href="mailto:contact@zacharyseguin.ca">contact@zacharyseguin.ca</a>.
-            </p>
+            <!--<p>-->
+              <!--If you encounter any issues, have any feedback or feature requests,-->
+              <!--please <a href="https://github.com/zachomedia/apple-music-webplayer/issues" target="_blank">submit an issue on GitHub</a>-->
+              <!--or send an email to <a href="mailto:contact@zacharyseguin.ca">contact@zacharyseguin.ca</a>.-->
+            <!--</p>-->
           </b-col>
         </b-row>
       </b-container>
@@ -63,8 +63,8 @@
     <div class="loader" v-else>
       <div>
         <p>
-          <a href="https://zacharyseguin.ca" target="_blank">
-            <img class="logo" src="./assets/icon.svg" alt="Zachary Seguin" />
+          <a href="https://googlemusic.net" target="_blank">
+            <img class="logo" src="./assets/icon.svg" alt="googlemusic.net" />
           </a>
         </p>
         <Loader />
@@ -111,9 +111,9 @@ router.beforeEach((to, from, next) => {
   }
 
   if (to.meta.title) {
-    document.title = to.meta.title + ' | Zachary Seguin Music';
+    document.title = to.meta.title + ' | googlemusic.net';
   } else {
-    document.title = 'Zachary Seguin Music: an Apple Music web player';
+    document.title = 'Google Music: an Apple Music web player';
   }
   next();
 });
@@ -306,7 +306,7 @@ body {
 }
 
 .logo {
-  height: 80px;
+  height: 120px;
 }
 
 .overlay {
