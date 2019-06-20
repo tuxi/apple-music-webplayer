@@ -79,10 +79,12 @@ module.exports = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-        }
+        // 问题 项目在本地run情况下显示正常，在build后font-awesome的css文件依赖的几个图标文件引用路径报错。
+        // 将配置中option注释掉即可解决路径问题 https://www.jb51.net/article/146684.htm
+        // options: {
+        //   limit: 10000,
+        //   name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+        // }
       }
     ]
   },
