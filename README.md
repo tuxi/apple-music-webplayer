@@ -74,3 +74,80 @@ npm run build
 ### Generating an Apple Music Developer token
 
 [Apple's official documentation](https://developer.apple.com/documentation/applemusicapi/getting_keys_and_creating_tokens) provides a base, and then you can visit [Creating an Apple Music API Token](https://medium.com/@leemartin/creating-an-apple-music-api-token-e0e5067e4281) for a great guide on how to generate the token.
+
+
+### 项目部署到nginx
+
+- 安装和编译
+
+```$xslt
+
+# 首先安装依赖
+npm install
+
+# 编译app 生成dist 目录
+npm run build
+
+```
+
+- 上传到服务器
+build之后将`dist`文件夹上传到服务器中，我是上传到linux的`/var/www`下新建的一个目录下
+
+- 配置nginx
+
+```markdown
+ server {
+            listen       80;
+            server_name  localhost;
+
+            #charset koi8-r;
+
+	    access_log /var/log/nginx/applemusic_access.log;
+   	    error_log /var/log/nginx/applemusic_error.log;	
+           
+            location /static {
+          	expires max;
+          	alias /var/www/applemusic/dist/static;
+            }
+            location / {
+                root   /var/www/applemusic/dist;
+                index  index.html index.htm;
+	    }
+}
+
+```
+
+- 在浏览器上访问，通过nginx中server配置的端口访问。端口为server上配的listen端口
+
+
+
+### 注意事项
+
+- 1.项目在本地run serve 情况下显示正常，在build后再运行dist，显示font-awesome的css文件依赖的几个图标文件引用路径报错。
+比如这个路径，就是错误的路径：`http://localhost:63342/apple-music-webplayer/dist/static/css/static/fonts/fontawesome-webfont.af7ae50.woff2
+
+解决方法：
+将配置中option注释掉即可解决路径问题 参考https://www.jb51.net/article/146684.htm
+
+- 2.本地开发运行使用`npm run serve`，上下部署使用`npm run build`然后上传dist到服务器
+
+- 3.`assetsPublicPath`在`index.js`中正确的配置如下：
+```$xslt
+module.exports = {
+  dev: {
+
+    // Paths
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+  },
+
+  build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
+
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './',
+}
+```
